@@ -6,21 +6,47 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSomeFunc(t *testing.T) {
+func TestRankTeamsByVotes(t *testing.T) {
 	type args struct {
-		x int
-		y int
+		votes []string
 	}
 	tests := []struct {
 		name string
 		args args
-		want int
+		want string
 	}{
-		// TODO: Add test cases.
+		{
+			name: "test1",
+			args: args{
+				votes: []string{"ABC", "ACB", "ABC", "ACB", "ACB"},
+			},
+			want: "ACB",
+		},
+		{
+			name: "test2",
+			args: args{
+				votes: []string{"WXYZ", "XYZW"},
+			},
+			want: "XWYZ",
+		},
+		{
+			name: "test3",
+			args: args{
+				votes: []string{"ZMNAGUEDSJYLBOPHRQICWFXTVK"},
+			},
+			want: "ZMNAGUEDSJYLBOPHRQICWFXTVK",
+		},
+		{
+			name: "test4",
+			args: args{
+				votes: []string{},
+			},
+			want: "",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := SomeFunc(tt.args.x, tt.args.y)
+			got := RankTeamsByVotes(tt.args.votes)
 			assert.Equal(t, tt.want, got)
 		})
 	}
