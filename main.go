@@ -17,32 +17,32 @@ You must solve it in O(n) time complexity.
 */
 
 func FindKthLargest(nums []int, k int) int {
-	return kLargest(&nums, 0, len(nums)-1, k-1)
+	return kLargest(nums, 0, len(nums)-1, k-1)
 }
 
-func findPartition(nums *[]int, low, high int) int {
+func findPartition(nums []int, low, high int) int {
 	pivot := high
 
-	pivotVal := (*nums)[pivot]
+	pivotVal := nums[pivot]
 
 	j := low
 
 	for i := low; i < pivot; i++ {
-		if (*nums)[i] > pivotVal {
-			(*nums)[i], (*nums)[j] = (*nums)[j], (*nums)[i]
+		if nums[i] > pivotVal {
+			nums[i], nums[j] = nums[j], nums[i]
 			j++
 		}
 	}
 
-	(*nums)[j], (*nums)[pivot] = (*nums)[pivot], (*nums)[j]
+	nums[j], nums[pivot] = nums[pivot], nums[j]
 	return j
 }
 
-func kLargest(nums *[]int, low, high, k int) int {
+func kLargest(nums []int, low, high, k int) int {
 	pi := findPartition(nums, low, high)
 
 	if pi == k {
-		return (*nums)[pi]
+		return nums[pi]
 	}
 
 	if pi > k {
