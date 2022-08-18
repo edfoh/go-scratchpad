@@ -14,22 +14,22 @@ func Test(t *testing.T) {
 		wantTotalFileSize   int64
 		wantTopKCollections map[string]int64
 	}{
-		// {
-		// 	desc: "test 1",
-		// 	data: [][]string{
-		// 		{"file1.txt", "100"},
-		// 		{"file2.txt", "200", "collection1"},
-		// 		{"file3.txt", "200", "collection1"},
-		// 		{"file4.txt", "300", "collection2"},
-		// 		{"file5.txt", "100"},
-		// 	},
-		// 	topK:              2,
-		// 	wantTotalFileSize: 900,
-		// 	wantTopKCollections: map[string]int64{
-		// 		"collection1": 400,
-		// 		"collection2": 300,
-		// 	},
-		// },
+		{
+			desc: "test 1",
+			data: [][]string{
+				{"file1.txt", "100"},
+				{"file2.txt", "200", "collection1"},
+				{"file3.txt", "200", "collection1"},
+				{"file4.txt", "300", "collection2"},
+				{"file5.txt", "100"},
+			},
+			topK:              2,
+			wantTotalFileSize: 900,
+			wantTopKCollections: map[string]int64{
+				"collection1": 400,
+				"collection2": 300,
+			},
+		},
 		{
 			desc: "test 1",
 			data: [][]string{

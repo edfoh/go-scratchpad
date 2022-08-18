@@ -38,7 +38,6 @@ func NewFile(name string, size int64) *File {
 
 type Collection struct {
 	name      string
-	index     int
 	files     []*File
 	totalSize int64
 }
@@ -98,8 +97,7 @@ func parseInt(s string) int64 {
 func (c *Catalog) addFileToCollection(name string, f *File) *Collection {
 	if _, ok := c.catalog[name]; !ok {
 		col := &Collection{
-			name:  name,
-			index: len(c.collections),
+			name: name,
 		}
 		col.AddFile(f)
 		c.collections = append(c.collections, col)
@@ -149,8 +147,6 @@ func (c *CollectionsHeap) Less(i int, j int) bool {
 // Swap swaps the elements with indexes i and j.
 func (c *CollectionsHeap) Swap(i int, j int) {
 	(*c)[i], (*c)[j] = (*c)[j], (*c)[i]
-	(*c)[i].index = j
-	(*c)[j].index = i
 }
 
 func (c *CollectionsHeap) Push(x any) {
